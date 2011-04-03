@@ -16,3 +16,6 @@
 [submodule "kohana/modules/orm-mptt"]
 	path = kohana/modules/orm-mptt
 	url = git://github.com/evopix/orm-mptt.git
+[submodule "kohana/modules/purifier"]
+	path = kohana/modules/purifier
+	url = git://github.com/shadowhand/purifier.git
