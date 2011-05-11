@@ -1,0 +1,473 @@
+// CSS Mini Reset
+// http://github.com/vladocar/CSS-Mini-Reset
+
+html, body, div, form, fieldset, legend, label, p, h1, h2, h3, h4, h5, h6, ul, ol, hr
+	margin: 0
+	padding: 0
+
+
+table
+	border-collapse: collapse
+	border-spacing: 0
+
+
+th, td
+	text-align: left
+	vertical-align: top
+
+
+h1, h2, h3, h4, h5, h6, th, td, caption
+	font-weight: normal
+
+
+img
+	border: 0
+
+
+// CSS Mini Reset /
+
+
+$orange: #fa661e
+$dark_blue: #184071
+$dark_red: #D41B1B
+
+
+@mixin box-shadow ($left: 0, $top: 0, $radius: 10px, $offset: 0, $color: #000, $inset: false)
+	@if $inset == false
+		box-shadow: $left $top $radius $offset $color
+		-webkit-box-shadow: $left $top $radius $offset $color
+		-moz-box-shadow: $left $top $radius $offset $color
+
+	@else
+		box-shadow: inset $left $top $radius $offset $color
+		-webkit-box-shadow: inset $left $top $radius $offset $color
+		-moz-box-shadow: inset $left $top $radius $offset $color
+
+
+body
+	background: #3b3b3b
+	font-family: Verdana, Geneva, sans-serif
+
+a
+	color: $orange
+	text-decoration: none
+
+	&:hover
+		text-decoration: underline
+
+input[type="text"], input[type="password"]
+	border: 1px solid #000
+	background: #f0f0f0
+	color: #333
+	padding: 2px
+	font-size: 14px
+
+	&.negative
+		border-color: #f00
+
+	&.positive
+		border-color: #0f0
+
+	&:focus
+		border-color: $orange
+
+.clear_both
+	clear: both
+
+.pagination
+	font-size: 14px
+
+	a
+		padding: 1px 2px
+
+		&:hover
+			background: #f0f0f0
+			text-decoration: none
+
+#container
+	margin: 0 auto 10px
+	width: 90%
+	max-width: 960px
+	min-width: 755px
+	@include box-shadow(0, 0, 10px)
+	background: #1c1c1c
+
+#header
+	height: 105px
+	background: url("../img/interface/bgs.png") repeat-x
+
+	.logo
+		float: left
+		position: relative
+		top: 10px
+		left: 30px
+		width: 200px
+
+		h1
+			font-size: 40px
+			color: $orange
+			text-shadow: 1px 1px 4px #222
+
+			a:hover
+				text-decoration: none
+
+		h2
+			font-size: 20px
+			color: #fff
+			text-shadow: 1px 1px 4px #222
+			float: right
+
+			a
+				color: #fff
+
+				&:hover
+					text-decoration: none
+
+	.search
+		border: 1px solid #000
+		background: #f0f0f0
+		width: 298px
+		height: 26px
+		float: right
+		position: relative
+		top: 10px
+		right: 10px
+
+		input
+			&[type="text"]
+				height: 20px
+				width: 260px
+				padding: 4px 2px 2px
+				border: none
+				font-size: 14px
+				vertical-align: middle
+				background: #f0f0f0
+
+			&[type="submit"]
+				height: 22px
+				width: 26px
+				border: none
+				background: url("../img/interface/btns.png") no-repeat
+				margin: 2px 2px 0 00
+				float: right
+
+				&:hover
+					background: url("../img/interface/btns.png") no-repeat -26px 0
+					cursor: pointer
+
+#nav
+	list-style-type: none
+	height: 42px
+	padding: 0 10px
+	background: url("../img/interface/bgs.png") repeat-x 0 -105px
+	@include box-shadow(0, 5px, 6px, -3px, #111)
+	position: relative
+	z-index: 10
+
+	li
+		float: left
+		margin: 0 3px 0 0
+
+		a
+			display: block
+			font-size: 16px
+			font-weight: bold
+			line-height: 16px
+			padding: 13px 10px 13px
+			text-shadow: 1px 1px 4px #222
+
+			&:hover
+				background: url("../img/interface/bgs.png") repeat-x 0 -147px
+				text-decoration: none
+
+			&.active
+				color: #fff
+				background: url("../img/interface/bgs.png") repeat-x 0 -189px
+
+				&:hover
+					background: url("../img/interface/bgs.png") repeat-x 0 -189px
+
+#content
+	margin: 0 320px 0 0
+	background: #252525
+	position: relative
+	z-index: 5
+	color: #e5e5e5
+	font-size: 14px
+
+	&.no_sidebar
+		margin: 0
+
+	p
+		margin: 8px 0 0
+		line-height: 18px
+
+	#komentari
+		margin: 20px 0 0
+
+		.comment_box
+			background: #2F2F2F
+			margin: 10px 0 0
+			padding: 2px 5px
+
+			&.own
+				border: 1px dashed $dark_blue + 50
+				padding: 2px 4px
+
+			.info
+				margin: 0
+				color: #aaa
+				font-size: 10px
+
+			div
+				margin: 5px 0 0
+
+				p
+					margin: 5px 0 0
+					font-size: 12px
+
+		#add_comment_form
+			margin: 10px 0 0
+
+			.error
+				text-align: center
+				font-size: 12px
+				font-weight: bold
+				color: $dark_red
+				margin: 0 0 6px
+
+			.actions
+				text-align: right
+
+				button.add
+					margin: 10px 0 0
+
+			#comment_submit_messages
+				font-size: 12px
+				font-weight: bold
+				text-align: center
+
+				p
+					margin: 0 0 5px
+
+					&.negative
+						color: $dark_red
+
+	#side
+		float: right
+		margin: 0 -320px 0 0
+		padding: 0 10px 10px
+		width: 300px
+		color: #e5e5e5
+		font-size: 12px
+
+		p
+			margin: 5px 0 0
+			line-height: normal
+
+		.section
+			margin: 10px 0 0
+
+			.title
+				font-weight: bold
+				font-size: 16px
+				overflow: hidden
+				margin: 0 0 3px
+
+			> hr
+				background: $dark_blue
+				border: none
+				height: 1px
+				margin: 0 0 5px
+
+			ul.content
+				list-style-type: none
+
+				li
+					margin: 0 0 5px 0
+
+			.content
+
+				table.login
+					border-spacing: 0
+					width: 100%
+
+					td
+						padding: 0
+						margin: 0
+
+						&.padded
+							padding: 5px 0 0
+
+							input[type="submit"]
+								float: right
+
+							label
+								position: relative
+								top: -2px
+
+						&#login_msg
+							p
+								font-weight: bold
+								text-align: center
+								margin-bottom: 5px
+
+							.error
+								color: $dark_red
+
+							.success
+								color: #42a829
+
+					.label
+						text-align: right
+						padding: 6px 3px 0 0
+						width: 70px
+
+					input[type="text"], input[type="password"]
+						font-size: 12px
+						width: 220px
+						margin: 4px 0 0 0
+
+	hr
+		background: $orange
+		border: none
+		height: 1px
+		margin: 0 0 5px 15px
+
+	> .padded
+		padding: 10px
+
+	.pagination
+		text-align: center
+
+	.entry
+		margin: 10px 0 0
+		padding: 9px
+		border: 1px solid $dark_blue
+
+		.title
+			display: inline-block
+			font-size: 16px
+			text-shadow: 2px 2px 4px #111
+			margin: 0 0 5px
+
+		.info
+			font-size: 10px
+			margin: 0 0 6px
+			color: #aaa
+
+			.delimiter
+				margin: 0 3px 0
+				color: #fff
+
+		.content
+			font-size: 12px
+			line-height: 19px
+			margin: 0
+
+		&.standalone
+			border: 0
+			padding: 0
+			margin: 0
+
+			.title
+				margin: 0 0 12px
+				font-size: 18px
+
+	.big_text
+		font-size: 16px
+		font-weight: bold
+		text-shadow: 1px 1px 2px #111
+		margin: 5px 0 5px
+
+	table.form
+		width: 100%
+
+		&.spaced
+			margin: 10px 0 10px
+
+		> tbody > tr > td
+			padding: 5px 3px 3px
+
+			p
+				line-height: normal
+
+				&.error
+					color: $dark_red
+					font-weight: bold
+					text-align: center
+					margin: 2px 0 0
+
+			.required
+				font-weight: bold
+				color: $dark_red
+
+			&.left
+				padding-top: 6px
+				width: 25%
+				text-align: right
+
+			&.right
+				font-size: 12px
+				color: #bbb
+
+				p
+					margin: 2px 0 0
+
+					&.error
+						margin: 2px 0 0 10px
+						font-weight: bold
+						text-align: left
+
+			input[type="text"], input[type="password"]
+				width: 250px
+
+		&.add_notice
+			.label
+				font-size: 18px
+				padding-bottom: 0
+			input[type="text"].big
+				font-size: 18px
+				padding: 3px
+				width: 606px
+
+	.category_selector
+		list-style-type: none
+
+		&.spaced
+			margin: 20px 0 20px
+
+		li
+			margin: 0 0 5px
+
+			input[type="checkbox"]
+				position: relative
+				top: 2px
+				margin: 0 4px 0 0
+
+			> ul
+				margin: 5px 0 0 30px
+				list-style-type: none
+
+			label
+				font-weight: bold
+
+	.flash_message
+		text-align: center
+		p
+			display: inline-block
+			padding: 2px 10px 3px
+			margin: 0 auto 10px
+			border: 1px solid transparent
+			font-weight: bold
+			text-align: center
+			font-size: 12px
+			-moz-border-radius: 4px 4px 4px 4px
+			border-radius: 4px 4px 4px 4px
+		&.positive p
+			background: #2e8c1e
+			border-color: #2ec81b
+			color: #fff
+			text-shadow: 1px 1px 2px #000
+
+@import "css3buttons.sass"
