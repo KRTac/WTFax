@@ -19,7 +19,7 @@ abstract class Controller_Base extends Controller_Template {
 
 		$this->user = Auth::instance()->get_user(false);
 
-		$this->conf['common'] = Kohana::config('common');
+		$this->conf['common'] = Kohana::$config->load('common');
 
 		$this->template->scripts = array();
 	}
@@ -67,7 +67,7 @@ abstract class Controller_Base extends Controller_Template {
 			case '!jquery':
 				$this->template->scripts[] = array(
 					'type' => 'file',
-					'script' => '/static/js/jquery-1.5.2.min.js'
+					'script' => '/static/js/jquery-1.6.4.min.js'
 				);
 				break;
 
