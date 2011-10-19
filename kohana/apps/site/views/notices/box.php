@@ -1,6 +1,6 @@
 <?php
 
-$config = Kohana::config('common');
+$config = Kohana::$config->load('common');
 
 echo '
 				<div class="entry'.(isset($standalone) && $standalone ? ' standalone' : '').'">';

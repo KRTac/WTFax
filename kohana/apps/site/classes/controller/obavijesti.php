@@ -23,9 +23,13 @@ class Controller_Obavijesti extends Controller_Base {
 			->count_all();
 
 		$pagination = Pagination::factory(array(
-			'total_items' => $total_notices,
-			'items_per_page' => 10,
-		));
+				'total_items' => $total_notices,
+				'items_per_page' => 10,
+			))
+			->route_params(array(
+				'action' => 'sve',
+				'controller' => 'obavijesti',
+			));
 
 		$notices = ORM::factory('notice')
 			->where('display', '=', 1)
@@ -64,30 +68,40 @@ class Controller_Obavijesti extends Controller_Base {
 
 		$notices = ORM::factory('notice')
 			->join('categories_notices')
+			->on('categories_notices.notice_id', '=', 'notice.id')
+			->where_open();
+
+		$totalNotices = DB::select()
+			->from('notices')
+			->select(DB::expr('COUNT(DISTINCT notices.id) AS notice_count'))
+			->join('categories_notices')
 			->on('categories_notices.notice_id', '=', 'notices.id')
 			->where_open();
 
 		foreach ($categories as $cat) {
 			$category_ids[] = $cat->id;
 			$notices->or_where('categories_notices.category_id', '=', $cat->id);
+			$totalNotices->or_where('categories_notices.category_id', '=', $cat->id);
 		}
 
-		$notices
-			->where_close()
+		$totalNotices = $totalNotices->where_close()
 			->and_where('notices.display', '=', 1)
-			->reset(false);
-
-		$totalNotices = $notices
-			->count_all();
+			->execute()
+			->get('notice_count');
 
 		$pagination = Pagination::factory(array(
-			'total_items' => $totalNotices,
-			'items_per_page' => 10,
-		));
+				'total_items' => $totalNotices,
+				'items_per_page' => 10,
+			))
+			->route_params(array(
+				'action' => 'moje',
+				'controller' => 'obavijesti',
+			));
 
 		$notices = $notices
+			->where_close()
+			->and_where('notice.display', '=', 1)
 			->order_by('created', 'DESC')
-			->group_by('id')
 			->offset($pagination->offset)
 			->limit($pagination->items_per_page)
 			->find_all();
@@ -118,10 +132,15 @@ class Controller_Obavijesti extends Controller_Base {
 			->count_all();
 
 		$pagination = Pagination::factory(array(
-			'current_page' => array('source' => 'route', 'key' => 'page'),
-			'total_items' => $totalNotices,
-			'items_per_page' => 10,
-		));
+				'current_page' => array('source' => 'route', 'key' => 'page'),
+				'total_items' => $totalNotices,
+				'items_per_page' => 10,
+			))
+			->route_params(array(
+				'id' => $id,
+				'action' => 'kategorija',
+				'controller' => 'obavijesti',
+			));
 
 		$notices = $notices
 			->order_by('created', 'DESC')

@@ -3,7 +3,7 @@
 class User {
 
 	static function send_email_confirmation ($user) {
-		$config = Kohana::config('common');
+		$config = Kohana::$config->load('common');
 
 		$headers = 'From: '.$config['email']['noreply']."\r\n";
 		$message = View::factory('email/email_confirmation', array('user' => $user));
@@ -12,7 +12,7 @@ class User {
 	}
 
 	static function password_reset_email ($user) {
-		$config = Kohana::config('common');
+		$config = Kohana::$config->load('common');
 
 		$headers = 'From: '.$config['email']['noreply']."\r\n";
 		$message = View::factory('email/reset_password', array('user' => $user));

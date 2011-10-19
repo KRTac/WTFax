@@ -1,6 +1,6 @@
 <?php
 
-$domain = Kohana::config('main.domain');
+$domain = Kohana::$config->load('main.domain');
 
 echo wordwrap('Pozdrav, '.$user->name.'.
 

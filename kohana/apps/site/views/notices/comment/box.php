@@ -1,6 +1,6 @@
  <?php
 
-$config = Kohana::config('common');
+$config = Kohana::$config->load('common');
 
 echo '
 					<div id="komentar'.$comment->id.'" class="comment_box'.($user && $user->id == $comment->user->id ? ' own' : '').'">
