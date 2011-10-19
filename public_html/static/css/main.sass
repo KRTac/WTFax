@@ -94,7 +94,7 @@ input[type="text"], input[type="password"]
 
 #header
 	height: 105px
-	background: url("../img/interface/bgs.png") repeat-x
+	background: url("../img/interface/bgs.png") repeat-x #252525
 
 	.logo
 		float: left
@@ -159,7 +159,7 @@ input[type="text"], input[type="password"]
 	list-style-type: none
 	height: 42px
 	padding: 0 10px
-	background: url("../img/interface/bgs.png") repeat-x 0 -105px
+	background: url("../img/interface/bgs.png") repeat-x 0 -105px #266DC4
 	@include box-shadow(0, 5px, 6px, -3px, #111)
 	position: relative
 	z-index: 10
@@ -451,6 +451,29 @@ input[type="text"], input[type="password"]
 
 			label
 				font-weight: bold
+
+				.icon
+					position: relative
+					top: 2px
+					margin: 0 5px 0 0
+					width: 15px
+					height: 15px
+					background: url("../img/interface/btns.png") no-repeat 0 -22px
+					display: inline-block
+
+					&.plus
+						background-position: 0 -22px
+
+					&.minus
+						background-position: -15px -22px
+
+				&:hover
+					.icon
+						&.plus
+							background-position: 0 -37px
+
+						&.minus
+							background-position: -15px -37px
 
 	.flash_message
 		text-align: center
