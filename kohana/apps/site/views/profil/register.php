@@ -62,7 +62,7 @@ echo '
 						<td class="right">
 							<p>Odaberite kategorije obavijesti koje želite primati. Preporuča se da primate najmanje obavijesti cijelog veleučilišta, obavijesti svog studija i obavijesti godine studija u koju ste upisani.</p>
 							<p><strong>Napomena:</strong> Odabir jedne kategorije ne podrazumijeva njezine podkategorije.</p><br />
-							'.Model_Category::render_tree(null, true, 'category_selector', null, $selected_categories).'
+							'.Model_Category::render_tree(null, true, 'category_selector autoexpand_selected', null, $selected_categories).'
 						</td>
 					</tr>
 					<tr>

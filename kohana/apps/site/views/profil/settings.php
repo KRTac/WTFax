@@ -24,7 +24,7 @@ foreach ($input_errors['categories'] as $e) {
 				<p class="error">'.$e.'</p>';
 }
 
-echo Model_Category::render_tree(null, true, 'category_selector spaced', null, $selected_categories).'
+echo Model_Category::render_tree(null, true, 'category_selector autoexpand_selected spaced', null, $selected_categories).'
 				<div>
 					<button type="submit" name="categories" value="Spremi kategorije"><span class="icon check"></span>Spremi kategorije</button>
 				</div>

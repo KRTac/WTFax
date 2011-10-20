@@ -64,19 +64,18 @@ class Model_Category extends ORM_MPTT {
 			if ($displayMatters && $branch->display != 1) {
 				continue;
 			}
+			$hasChildren = $branch->has_children();
 
-			$output .= '<li><input type="checkbox"'.(in_array($branch->id, $selectedCategories) ? ' checked="checked"' : '').' name="_categories[]" value="'.$branch->id.'" id="inputCategory'.$branch->id.'" /><label for="inputCategory'.$branch->id.'">'.$branch->name.'</label>';
+			$output .= '<li>'.($hasChildren ? '<a class="toggle_child_list" href="#"></a>' : '').'<input type="checkbox"'.(in_array($branch->id, $selectedCategories) ? ' checked="checked"' : '').' name="_categories[]" value="'.$branch->id.'" id="inputCategory'.$branch->id.'" /><label for="inputCategory'.$branch->id.'">'.$branch->name.'</label>';
 
-			if ($branch->has_children()) {
+			if ($hasChildren) {
 				$output .= Model_Category::render_tree($branch, $displayMatters, null, null, $selectedCategories);
 			}
 
 			$output .= '</li>';
 		}
 
-		$output .= '</ul>';
-
-		return $output;
+		return $output.'</ul>';
 	}
 
 }

@@ -45,7 +45,7 @@ echo '
 						<td class="left">Kategorije:</td>
 						<td class="right">
 							<p><strong>Napomena:</strong> Odabir jedne kategorije ne podrazumijeva njezine podkategorije.</p><br />
-							'.Model_Category::render_tree(null, true, 'category_selector', null, $selected_categories).'
+							'.Model_Category::render_tree(null, true, 'category_selector autoexpand_selected', null, $selected_categories).'
 						</td>
 					</tr>
 					<tr>
