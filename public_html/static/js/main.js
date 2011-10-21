@@ -73,7 +73,10 @@ $(document).ready(function () {
 			var $current_list = $(this);
 
 			if ($current_list.find('input[name="_categories[]"]:checked').length > 0) {
-				$current_list.css('display', 'block');
+				$current_list
+					.css('display', 'block')
+					.siblings('a.toggle_child_list')
+					.addClass('minus');
 			} else {
 				$current_list.css('display', 'none');
 			}
