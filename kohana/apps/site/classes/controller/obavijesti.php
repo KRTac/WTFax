@@ -102,6 +102,7 @@ class Controller_Obavijesti extends Controller_Base {
 			->where_close()
 			->and_where('notice.display', '=', 1)
 			->order_by('created', 'DESC')
+			->group_by('notice.id')
 			->offset($pagination->offset)
 			->limit($pagination->items_per_page)
 			->find_all();
