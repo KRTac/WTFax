@@ -28,6 +28,10 @@ class Model_User extends Model_Auth_User {
 				array('min_length', array(':value', 2)),
 				array('max_length', array(':value', 80)),
 			),
+			'notices_per_page' => array(
+				array('not_empty'),
+				array('range', array(':value', 10, 25)),
+			),
 		);
 	}
 
@@ -49,6 +53,7 @@ class Model_User extends Model_Auth_User {
 			'password'         => 'Lozinka',
 			'password_confirm' => 'Potvrda lozinke',
 			'name' => 'Puno ime',
+			'notices_per_page' => 'Broj obavijesti po stranici',
 		);
 	}
 

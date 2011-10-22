@@ -79,6 +79,12 @@ echo '
 						</td>
 					</tr>
 					<tr>
+						<td class="left"><label for="input_notices_per_page">Broj obavijesti po stranici:</label></td>
+						<td class="right">
+							'.Form::select('notices_per_page', array(10 => '10', 15 => '15', 20 => '20', 25 => '25'), $user->notices_per_page, array('id' => 'input_notices_per_page')).'
+						</td>
+					</tr>
+					<tr>
 						<td class="left"></td>
 						<td class="right"><button type="submit" name="general" value="Spremi postavke"><span class="icon user"></span>Spremi postavke</button></td>
 					</tr>

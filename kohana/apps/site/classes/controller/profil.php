@@ -236,7 +236,7 @@ class Controller_Profil extends Controller_Base {
 			}
 		} else if (isset($_POST['general'])) {
 			$old_email = $this->user->email;
-			$this->user->values($_POST, array('email', 'name'));
+			$this->user->values($_POST, array('email', 'name', 'notices_per_page'));
 
 			$this->user->email_notice = (isset($_POST['email_notice']) && $_POST['email_notice'] == '1') ? 1 : 0;
 
