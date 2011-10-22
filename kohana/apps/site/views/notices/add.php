@@ -26,7 +26,7 @@ if ($input_errors) {
 
 echo '
 					<tr>
-						<td colspan="2" class="label"><label for="inputTitle">Naslov:</label></td>
+						<td colspan="2" class="label"><span class="required">*</span><label for="inputTitle">Naslov:</label></td>
 					</tr>
 					<tr>
 						<td colspan="2">

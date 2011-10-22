@@ -23,6 +23,7 @@ class Model_Notice extends ORM {
 				array('range', array(':value', 0, 1)),
 			),
 			'title' => array(
+				array('not_empty'),
 				array('max_length', array(':value', 255)),
 			),
 			'content' => array(

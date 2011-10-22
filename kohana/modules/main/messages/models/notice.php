@@ -2,6 +2,7 @@
 
 return array(
 	'title' => array(
+		'not_empty' => 'Morate zadati naslov',
 		'max_length' => 'Naslov može sadržavati najviše :param2 znakova',
 	),
 	'content' => array(

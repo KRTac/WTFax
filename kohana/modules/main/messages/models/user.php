@@ -13,4 +13,8 @@ return array(
 		'min_length' => 'Ime mora sadržavati najmanje :param2 znaka',
 		'max_length' => 'Ime može sadržavati najviše :param2 znakova',
 	),
+	'notices_per_page' => array(
+		'not_empty' => 'Morate zadati broj obavijesti po stranici',
+		'range' => 'Broj obavijesti po stranici mora biti između :param2 i :param3 znakova',
+	),
 );
