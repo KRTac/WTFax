@@ -24,7 +24,7 @@ class Controller_Lozinka extends Controller_Base {
 					->find();
 
 				if (!$user->loaded()) {
-					$input_errors[] = 'Zadana email adresa ne postoji';
+					$input_errors[] = 'Nema korisničkog računa s zadanom email adresom';
 				} else {
 					$user->password_recovery_hash = Random::hash();
 					$user->save();
