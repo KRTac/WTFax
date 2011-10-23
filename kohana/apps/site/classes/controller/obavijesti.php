@@ -184,6 +184,12 @@ class Controller_Obavijesti extends Controller_Base {
 			}
 
 			try {
+				$notice->url_text = URL::title(Text::limit_chars($notice->title, 40, '', true), '_', true);
+
+				if ($notice->url_text == '') {
+					$notice->url_text = URL::title(Text::limit_chars($notice->title, 40, '', false), '_', true);
+				}
+
 				$extra_validation = Validation::factory(array('_categories' => $selected_categories))
 					->rule('_categories', 'not_empty');
 				$notice->create($extra_validation);

@@ -7,7 +7,7 @@ echo '
 
 if ($notice->title) {
 	echo '
-					<h1 class="title"><a href="/obavijest/'.$notice->id.'">'.$notice->title.'</a></h1>';
+					<h1 class="title"><a href="/obavijest/'.$notice->id.'/'.$notice->url_text.'/">'.$notice->title.'</a></h1>';
 }
 
 $comments = $notice->comments
@@ -17,7 +17,7 @@ $comments = $notice->comments
 $comment_count = $comments->count_all();
 
 echo '
-					<div class="info"><span><a href="/obavijest/'.$notice->id.'">'.Comment::humanize_count($comment_count).'</a></span><span class="delimiter">|</span><span>'.date($config['date_format'], $notice->created);
+					<div class="info"><span><a href="/obavijest/'.$notice->id.'/'.$notice->url_text.'/#komentari">'.Comment::humanize_count($comment_count).'</a></span><span class="delimiter">|</span><span>'.date($config['date_format'], $notice->created);
 
 if ($notice->user->loaded()) {
 	echo ' by '.$notice->user->name;

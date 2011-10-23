@@ -120,7 +120,6 @@ Kohana::modules(array(
 
 Route::set('notices', '(<action>(/<id>(/<page>)))', array(
 		'id' => '[0-9]+',
-		'page' => '[0-9]+',
 		'action' => '(moje|sve|dodaj|kategorija|obavijest|komentiraj)',
 	))
 	->defaults(array(
