@@ -118,8 +118,9 @@ Kohana::modules(array(
  * defaults for the URI.
  */
 
-Route::set('notices', '(<action>(/<id>(/<page>)))', array(
+Route::set('notices', '(<action>(/<id>(/<url_text>(/<page>))))', array(
 		'id' => '[0-9]+',
+		'page' => '[0-9]+',
 		'action' => '(moje|sve|dodaj|kategorija|obavijest|komentiraj)',
 	))
 	->defaults(array(
