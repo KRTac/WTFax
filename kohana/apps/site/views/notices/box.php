@@ -7,7 +7,7 @@ echo '
 
 if ($notice->title) {
 	echo '
-					<p class="title">'.$notice->title.'</p>';
+					<h1 class="title"><a href="/obavijest/'.$notice->id.'">'.$notice->title.'</a></h1>';
 }
 
 $comments = $notice->comments
