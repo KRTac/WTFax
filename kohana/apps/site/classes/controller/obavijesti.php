@@ -140,6 +140,7 @@ class Controller_Obavijesti extends Controller_Base {
 			->route_params(array(
 				'id' => $id,
 				'action' => 'kategorija',
+				'url_text' => $category->url_text,
 				'controller' => 'obavijesti',
 			));
 

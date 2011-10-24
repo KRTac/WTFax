@@ -31,7 +31,7 @@ $notice_categories = $notice->categories
 $categories_html = false;
 
 foreach ($notice_categories as $cat) {
-	$categories_html .= '<a href="/kategorija/'.$cat->id.'">'.$cat->name.'</a>, ';
+	$categories_html .= '<a href="/kategorija/'.$cat->id.'/'.$cat->url_text.'">'.$cat->name.'</a>, ';
 }
 
 echo UTF8::substr($categories_html, 0, -2).'</span></div>

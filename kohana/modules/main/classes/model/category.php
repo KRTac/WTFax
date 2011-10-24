@@ -17,6 +17,10 @@ class Model_Category extends ORM_MPTT {
 				array('not_empty'),
 				array('max_length', array(':value', 80)),
 			),
+			'url_text' => array(
+				array('not_empty'),
+				array('max_length', array(':value', 40)),
+			),
 		);
 	}
 
