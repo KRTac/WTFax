@@ -253,6 +253,40 @@ input[type="text"], input[type="password"]
 					&.negative
 						color: $dark_red
 
+	.link_list
+		border-bottom: 1px solid $orange
+		list-style-type: none
+		position: relative
+		z-index: 1
+		margin: 5px 0 10px 0
+
+		li
+			position: relative
+			top: 1px
+			z-index: 2
+			background: $orange
+			display: inline-block
+			margin: 0 10px 0 0
+			padding: 3px 7px
+			border: 0
+				left: 1px solid $orange
+				right: 1px solid $orange
+				top: 1px solid $orange
+				bottom: 1px solid $orange
+
+			a
+				font-weight: bold
+				color: #fff
+				font-size: 14px
+
+			&.active
+				background: #252525
+				border: 0
+					left: 1px solid $orange
+					right: 1px solid $orange
+					top: 1px solid $orange
+					bottom: 1px solid #252525
+
 	#side
 		float: right
 		margin: 0 -320px 0 0
@@ -283,8 +317,18 @@ input[type="text"], input[type="password"]
 			ul.content
 				list-style-type: none
 
-				li
+				> li
 					margin: 0 0 5px 0
+					overflow: hidden
+
+					ul
+						border-left: 1px dotted $dark_blue
+						padding: 5px 0 0 20px
+						list-style-type: none
+
+						li
+							margin: 0 0 5px 0
+							overflow: hidden
 
 			.content
 

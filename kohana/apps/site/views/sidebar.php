@@ -23,9 +23,8 @@ if ($user) {
 				<h3 class="title">Administracija</h3>
 				<hr />
 				<ul class="content">
-					<li><a href="/sve">Pregled obavijesti</a></li>
-					<li><a href="/admin/korisnici">Pregled korisnika</a></li>
-					<li><a href="/admin/kategorije">Uređivanje kategorija</a></li>
+					<li><a href="/admin/korisnici">Korisnici</a></li>
+					<li><a href="/admin/kategorije">Kategorije</a></li>
 				</ul>
 			</div>';
 	}
