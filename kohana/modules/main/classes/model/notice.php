@@ -31,8 +31,7 @@ class Model_Notice extends ORM {
 				array('max_length', array(':value', 5000)),
 			),
 			'url_text' => array(
-				array('not_empty'),
-				array('max_length', array(':value', 70)),
+				array('max_length', array(':value', 40)),
 			),
 		);
 	}
