@@ -11,5 +11,5 @@ if (!empty($title)) {
 
 echo $pagination.'
 			<div id="notices_wrapper">'.$content.'
-			</div>
+			</div>'.$pagination.'
 		</div>';

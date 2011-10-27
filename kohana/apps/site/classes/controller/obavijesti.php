@@ -42,7 +42,7 @@ class Controller_Obavijesti extends Controller_Base {
 			->set('content', View::factory('notices', array(
 				'notices' => $notices
 			)))
-			->set('pagination', $pagination);
+			->set('pagination', $pagination->render());
 	}
 
 	public function action_moje () {
@@ -111,7 +111,7 @@ class Controller_Obavijesti extends Controller_Base {
 			->set('content', View::factory('notices', array(
 				'notices' => $notices
 			)))
-			->set('pagination', $pagination);
+			->set('pagination', $pagination->render());
 	}
 
 	public function action_kategorija () {
@@ -155,7 +155,7 @@ class Controller_Obavijesti extends Controller_Base {
 					'notices' => $notices,
 				)),
 				'title' => $title,
-				'pagination' => $pagination,
+				'pagination' => $pagination->render(),
 			));
 	}
 
