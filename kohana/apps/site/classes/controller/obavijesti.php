@@ -24,7 +24,7 @@ class Controller_Obavijesti extends Controller_Base {
 
 		$pagination = Pagination::factory(array(
 				'total_items' => $total_notices,
-				'items_per_page' => $this->user->notices_per_page,
+				'items_per_page' => $this->notices_per_page,
 			))
 			->route_params(array(
 				'action' => 'sve',
@@ -91,7 +91,7 @@ class Controller_Obavijesti extends Controller_Base {
 
 		$pagination = Pagination::factory(array(
 				'total_items' => $totalNotices,
-				'items_per_page' => $this->user->notices_per_page,
+				'items_per_page' => $this->notices_per_page,
 			))
 			->route_params(array(
 				'action' => 'moje',
@@ -135,7 +135,7 @@ class Controller_Obavijesti extends Controller_Base {
 		$pagination = Pagination::factory(array(
 				'current_page' => array('source' => 'route', 'key' => 'page'),
 				'total_items' => $totalNotices,
-				'items_per_page' => $this->user->notices_per_page,
+				'items_per_page' => $this->notices_per_page,
 			))
 			->route_params(array(
 				'id' => $id,

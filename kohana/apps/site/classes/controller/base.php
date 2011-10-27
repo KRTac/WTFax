@@ -8,7 +8,14 @@ abstract class Controller_Base extends Controller_Template {
 	public $titles = array();
 	public $content = false;
 	public $search_query = false;
+
 	public $user = false;
+	public $user_roles = array(
+		'login' => false,
+		'admin' => false,
+	);
+	public $notices_per_page = 10;
+
 	public $active_menu_item = false;
 	public $show_sidebar = true;
 
@@ -18,6 +25,13 @@ abstract class Controller_Base extends Controller_Template {
 		parent::before();
 
 		$this->user = Auth::instance()->get_user(false);
+
+		if ($this->user) {
+			$this->notices_per_page = $this->user->notices_per_page;
+
+			$this->user_roles['login'] = $this->user->has('roles', 1);
+			$this->user_roles['admin'] = $this->user->has('roles', 2);
+		}
 
 		$this->conf['common'] = Kohana::$config->load('common');
 
@@ -42,7 +56,8 @@ abstract class Controller_Base extends Controller_Template {
 			$sidebar = '';
 			if ($this->show_sidebar) {
 				$sidebar = View::factory('sidebar')
-					->set('user', $this->user);
+					->set('user', $this->user)
+					->set('user_roles', $this->user_roles);
 			}
 
 			$this->template
