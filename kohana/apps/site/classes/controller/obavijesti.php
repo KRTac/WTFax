@@ -18,9 +18,15 @@ class Controller_Obavijesti extends Controller_Base {
 		$this->titles[] = 'Sve obavijesti';
 		$this->active_menu_item = 'all';
 
-		$total_notices = ORM::factory('notice')
-			->where('display', '=', 1)
-			->count_all();
+		$notices = ORM::factory('notice');
+
+		if (!$this->user_roles['admin']) {
+			$notices->where('display', '=', 1);
+		}
+
+		$notices->reset(false);
+
+		$total_notices = $notices->count_all();
 
 		$pagination = Pagination::factory(array(
 				'total_items' => $total_notices,
@@ -31,9 +37,7 @@ class Controller_Obavijesti extends Controller_Base {
 				'controller' => 'obavijesti',
 			));
 
-		$notices = ORM::factory('notice')
-			->where('display', '=', 1)
-			->order_by('created', 'DESC')
+		$notices = $notices->order_by('created', 'DESC')
 			->offset($pagination->offset)
 			->limit($pagination->items_per_page)
 			->find_all();
@@ -55,9 +59,13 @@ class Controller_Obavijesti extends Controller_Base {
 		$this->titles[] = 'Moje obavijesti';
 		$this->active_menu_item = 'my';
 
-		$categories = $this->user->categories
-			->where('display', '=', 1)
-			->find_all();
+		$categories = $this->user->categories;
+
+		if (!$this->user_roles['admin']) {
+			$categories->where('display', '=', 1);
+		}
+
+		$categories = $categories->find_all();
 
 		if (!count($categories)) {
 			$this->content = View::factory('notices/no_categories_selected');
@@ -85,9 +93,15 @@ class Controller_Obavijesti extends Controller_Base {
 			$totalNotices->or_where('categories_notices.category_id', '=', $cat->id);
 		}
 
-		$totalNotices = $totalNotices->where_close()
-			->and_where('notices.display', '=', 1)
-			->execute()
+		$totalNotices->where_close();
+		$notices->where_close();
+
+		if (!$this->user_roles['admin']) {
+			$totalNotices->and_where('notices.display', '=', 1);
+			$notices->and_where('notice.display', '=', 1);
+		}
+
+		$totalNotices = $totalNotices->execute()
 			->get('notice_count');
 
 		$pagination = Pagination::factory(array(
@@ -99,10 +113,7 @@ class Controller_Obavijesti extends Controller_Base {
 				'controller' => 'obavijesti',
 			));
 
-		$notices = $notices
-			->where_close()
-			->and_where('notice.display', '=', 1)
-			->order_by('created', 'DESC')
+		$notices = $notices->order_by('created', 'DESC')
 			->group_by('notice.id')
 			->offset($pagination->offset)
 			->limit($pagination->items_per_page)
@@ -127,9 +138,13 @@ class Controller_Obavijesti extends Controller_Base {
 		$title = 'Kategorija: '.$category->name;
 		$this->titles[] = $title;
 
-		$notices = $category->notices
-			->where('display', '=', '1')
-			->reset(false);
+		$notices = $category->notices;
+
+		if (!$this->user_roles['admin']) {
+			$notices->where('display', '=', '1');
+		}
+
+		$notices->reset(false);
 
 		$totalNotices = $notices
 			->count_all();
