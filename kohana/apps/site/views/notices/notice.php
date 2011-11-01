@@ -5,6 +5,7 @@ echo '
 	View::factory('notices/box', array(
 		'notice' => $notice,
 		'standalone' => true,
-		'user' => $user
+		'user' => $user,
+		'user_roles' => $user_roles
 	)).'
 		</div>';

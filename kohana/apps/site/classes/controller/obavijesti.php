@@ -40,7 +40,8 @@ class Controller_Obavijesti extends Controller_Base {
 
 		$this->content = View::factory('notices/container')
 			->set('content', View::factory('notices', array(
-				'notices' => $notices
+				'notices' => $notices,
+				'user_roles' => $this->user_roles
 			)))
 			->set('pagination', $pagination->render());
 	}
@@ -109,7 +110,8 @@ class Controller_Obavijesti extends Controller_Base {
 
 		$this->content = View::factory('notices/container')
 			->set('content', View::factory('notices', array(
-				'notices' => $notices
+				'notices' => $notices,
+				'user_roles' => $this->user_roles
 			)))
 			->set('pagination', $pagination->render());
 	}
@@ -153,6 +155,7 @@ class Controller_Obavijesti extends Controller_Base {
 		$this->content = View::factory('notices/container', array(
 				'content' => View::factory('notices', array(
 					'notices' => $notices,
+					'user_roles' => $this->user_roles
 				)),
 				'title' => $title,
 				'pagination' => $pagination->render(),
@@ -222,7 +225,7 @@ class Controller_Obavijesti extends Controller_Base {
 		$id = $this->request->param('id', null);
 		$notice = ORM::factory('notice', $id);
 
-		if (!$notice->loaded() || $notice->display != 1) {
+		if (!$notice->loaded() || ($notice->display != 1 && !$this->user_roles['admin'])) {
 			throw new HTTP_Exception_404;
 		}
 
@@ -234,7 +237,8 @@ class Controller_Obavijesti extends Controller_Base {
 
 		$this->content = View::factory('notices/notice')
 			->bind('notice', $notice)
-			->bind('user', $this->user);
+			->bind('user', $this->user)
+			->bind('user_roles', $this->user_roles);
 	}
 
 	public function action_komentiraj () {

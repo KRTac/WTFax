@@ -20,7 +20,8 @@ $(document).ready(function () {
 	var $content = $('#content'),
 		$login_form = $('#login_form'),
 		$flash_message = $content.find('.flash_message'),
-		$category_list = $content.find('ul.category_selector');
+		$category_list = $content.find('ul.category_selector'),
+		$remove_notices = $content.find('.remove_notice');
 
 	$login_form.submit(function () {
 		var $email = $('#login_email'),
@@ -103,5 +104,15 @@ $(document).ready(function () {
 
 			return false;
 		});
+
+	$remove_notices.click(function () {
+		var $clicked = $(this);
+
+		if (confirm('Sigurno želite ukloniti zadanu obavijest?')) {
+			location.href = $clicked.attr('href') + '?sigurno';
+		}
+
+		return false;
+	});
 
 });
