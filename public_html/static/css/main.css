@@ -153,6 +153,23 @@ input[type="text"], input[type="password"] {
   #content p {
     margin: 8px 0 0;
     line-height: 18px; }
+  #content hr {
+    background: #fa661e;
+    border: none;
+    height: 1px;
+    margin: 0 0 5px 15px; }
+  #content .big_text {
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #111111;
+    margin: 5px 0; }
+  #content .inline_notice_admin {
+    margin: 20px 0 0; }
+    #content .inline_notice_admin > h2 {
+      color: red;
+      font-size: 12px; }
+    #content .inline_notice_admin hr {
+      background: red; }
   #content #komentari {
     margin: 20px 0 0; }
     #content #komentari .comment_box {
@@ -284,11 +301,6 @@ input[type="text"], input[type="password"] {
           font-size: 12px;
           width: 220px;
           margin: 4px 0 0 0; }
-  #content hr {
-    background: #fa661e;
-    border: none;
-    height: 1px;
-    margin: 0 0 5px 15px; }
   #content > .padded {
     padding: 10px; }
   #content .pagination {
@@ -336,11 +348,6 @@ input[type="text"], input[type="password"] {
       #content .entry.standalone .title {
         margin: 0 0 12px;
         font-size: 18px; }
-  #content .big_text {
-    font-size: 16px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #111111;
-    margin: 5px 0 5px; }
   #content table.form {
     width: 100%; }
     #content table.form.spaced {

@@ -17,11 +17,7 @@ $comments = $notice->comments
 $comment_count = $comments->count_all();
 
 echo '
-					<div class="info"><span><a href="/obavijest/'.$notice->id.'/'.$notice->url_text.'#komentari">'.Comment::humanize_count($comment_count).'</a></span><span class="delimiter">|</span><span>'.date($config['date_format'], $notice->created);
-
-if ($notice->user->loaded()) {
-	echo ' by '.$notice->user->name;
-}
+					<div class="info"><span><a href="/obavijest/'.$notice->id.'/'.$notice->url_text.'#komentari">'.Comment::humanize_count($comment_count).'</a></span><span class="delimiter">|</span><span>' . ($notice->user->loaded() ? $notice->user->name.', ' : '') . date($config['date_format'], $notice->created);
 
 echo '</span><span class="delimiter">|</span><span>kategorije: ';
 
@@ -36,11 +32,9 @@ foreach ($notice_categories as $cat) {
 
 echo UTF8::substr($categories_html, 0, -2).'</span></div>';
 
-if ($user_roles['admin']) {
-	if ($notice->display != 1) {
-		echo '
-					<p class="admins"><span>Ova obavijest još nije odobrena. <a class="show_hide_notice" href="admin/obavijesti/odobri/' . $notice->id . '">Odobri obavijest</a></span></p>';
-	}
+if ($user_roles['admin'] && (!isset($standalone) || !$standalone) && $notice->display != 1) {
+	echo '
+					<p class="admins"><span>Ova obavijest nije odobrena. <a class="show_hide_notice" href="/admin/obavijesti/odobri/' . $notice->id . '">Odobri obavijest</a></span></p>';
 }
 
 echo '
@@ -48,6 +42,24 @@ echo '
 				</div>';
 
 if (isset($standalone) && $standalone) {
+	if ($user_roles['admin']) {
+		echo '
+				<div class="inline_notice_admin">
+					<h2 class="big_text">Administracija obavijesti</h2>
+					<hr />';
+
+		if ($notice->display)
+			echo '
+					<a class="button lock icon" href="/admin/obavijesti/sakrij/' . $notice->id . '">Sakrij obavijest</a>';
+		else
+			echo '
+					<a class="button unlock icon" href="/admin/obavijesti/odobri/' . $notice->id . '">Prikaži obavijest</a>';
+
+		echo '
+					<a class="button danger trash icon" href="/admin/obavijesti/brisi/' . $notice->id  . '" onclick="return confirm(\'Jeste li sigurni da želite izbrisati ovu obavijest?\');">Trajno izbriši</a>
+				</div>';
+	}
+
 	echo '
 				<div id="komentari">
 					<h2 class="big_text">Komentari</h2>
@@ -76,7 +88,7 @@ if (isset($standalone) && $standalone) {
 						<div id="comment_submit_messages"></div>
 						<textarea id="comment_content" rows="5" cols="80" class="tinymce" name="content"></textarea>
 						<div class="actions">
-							<button class="add primary" id="comment_submit" name="submit" type="submit" value="Komentiraj"><span class="comment icon"></span>Komentiraj</button>
+							<button class="button primary comment icon" id="comment_submit" name="submit" type="submit" value="Komentiraj">Komentiraj</button>
 						</div>
 					</form>';
 	}

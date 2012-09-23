@@ -241,7 +241,7 @@ class Controller_Obavijesti extends Controller_Base {
 		$notice = ORM::factory('notice', $id);
 
 		if (!$notice->loaded() || ($notice->display != 1 && !$this->user_roles['admin'])) {
-			throw new HTTP_Exception_404;
+			throw new Notice_Not_Found;
 		}
 
 		if (!empty($notice->title)) {

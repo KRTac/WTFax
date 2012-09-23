@@ -155,3 +155,9 @@ Route::set('error', 'error(/<action>)')
 		'controller' => 'error',
 		'action' => '404',
 	));
+
+Route::set('admin', 'admin/<controller>(/<action>(/<param>))')
+	->defaults(array(
+		'directory' => 'admin',
+		'action' => 'pregled',
+	));
