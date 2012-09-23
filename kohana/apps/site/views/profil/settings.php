@@ -26,7 +26,7 @@ foreach ($input_errors['categories'] as $e) {
 
 echo Model_Category::render_tree(null, true, 'category_selector autoexpand_selected spaced', null, $selected_categories).'
 				<div>
-					<button type="submit" name="categories" value="Spremi kategorije"><span class="icon check"></span>Spremi kategorije</button>
+					<button class="button approve icon" type="submit" name="categories" value="Spremi kategorije">Spremi kategorije</button>
 				</div>
 			</form>
 			<br />
@@ -86,7 +86,7 @@ echo '
 					</tr>
 					<tr>
 						<td class="left"></td>
-						<td class="right"><button type="submit" name="general" value="Spremi postavke"><span class="icon user"></span>Spremi postavke</button></td>
+						<td class="right"><button class="button user icon" type="submit" name="general" value="Spremi postavke">Spremi postavke</button></td>
 					</tr>
 				</table>
 			</form>
@@ -142,7 +142,7 @@ echo '
 					</tr>
 					<tr>
 						<td class="left"></td>
-						<td class="right"><button type="submit" name="password_submit" value="Promijeni lozinku"><span class="icon key"></span>Promijeni lozinku</button></td>
+						<td class="right"><button class="button key icon" type="submit" name="password_submit" value="Promijeni lozinku">Promijeni lozinku</button></td>
 					</tr>
 				</table>
 			</form>

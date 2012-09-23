@@ -49,7 +49,7 @@ echo '
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><button class="big positive" type="submit" name="submit" value="Objavi"><span class="plus icon"></span>Objavi</button></td>
+						<td colspan="2"><button class="button primary icon add" type="submit" name="submit" value="Objavi">Objavi</button></td>
 					</tr>
 				</table>
 			</form>';
