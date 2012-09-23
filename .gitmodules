@@ -7,9 +7,6 @@
 [submodule "kohana/modules/database"]
 	path = kohana/modules/database
 	url = git://github.com/kohana/database.git
-[submodule "kohana/modules/pagination"]
-	path = kohana/modules/pagination
-	url = git://github.com/kohana/pagination.git
 [submodule "kohana/modules/orm"]
 	path = kohana/modules/orm
 	url = git://github.com/kohana/orm.git
