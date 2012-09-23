@@ -172,17 +172,27 @@ input[type="text"], input[type="password"] {
       background: red; }
   #content #komentari {
     margin: 20px 0 0; }
+    #content #komentari #comment_container #no_comments_msg {
+      text-align: center;
+      font-size: 12px;
+      font-style: italic;
+      color: #999999; }
     #content #komentari .comment_box {
       background: #2f2f2f;
       margin: 10px 0 0;
-      padding: 2px 5px; }
+      padding: 2px 5px 5px; }
       #content #komentari .comment_box.own {
-        border: 1px dashed #4a72a3;
-        padding: 2px 4px; }
+        border: 1px dashed white;
+        padding: 2px 4px 5px; }
       #content #komentari .comment_box .info {
         margin: 0;
         color: #aaaaaa;
         font-size: 10px; }
+        #content #komentari .comment_box .info .delete_comment {
+          color: #eb3636;
+          font-weight: bold; }
+          #content #komentari .comment_box .info .delete_comment:hover {
+            color: red; }
       #content #komentari .comment_box div {
         margin: 5px 0 0; }
         #content #komentari .comment_box div p {

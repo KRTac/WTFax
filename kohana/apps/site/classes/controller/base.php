@@ -157,7 +157,10 @@ abstract class Controller_Base extends Controller_Template {
 			});
 
 			$('#add_comment_form').submit(function () {
-				$('#comment_submit').html('Šaljem komentar...');
+				var \$comment_submit = $('#comment_submit'),
+					\$comment_submit_messages = $('#comment_submit_messages');
+
+				\$comment_submit.html('Šaljem komentar...');
 				$.ajax({
 					cache: false,
 					data: {
@@ -168,18 +171,19 @@ abstract class Controller_Base extends Controller_Template {
 					url: add_ajax_to_uri($(this).attr('action')),
 					success: function(data, status) {
 						if (data.status == 'error') {
-							$('#comment_submit_messages').html('<p class=\"negative\">'+data.msg+'</p>');
+							\$comment_submit_messages.html('<p class=\"negative\">'+data.msg+'</p>');
 						} else {
 							tinyMCE.get('comment_content').setContent('');
 							$('#comment_container').append(data.html);
-							$('#comment_submit_messages').html('');
+							\$comment_submit_messages.html('');
 						}
 					},
 					error: function() {
-						$('#comment_submit_messages').html('<p class=\"negative\">Došlo je do problema prilikom slanja komentara. Komentar nije poslan.</p>');
+						\$comment_submit_messages.html('<p class=\"negative\">Došlo je do problema prilikom slanja komentara. Komentar nije poslan.</p>');
 					},
 					complete: function() {
-						$('#comment_submit').html('<span class=\"comment icon\"></span>Komentiraj');
+						\$comment_submit.html('Komentiraj');
+						$('#no_comments_msg').slideUp(200);
 					}
 				});
 

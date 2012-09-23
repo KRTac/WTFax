@@ -227,19 +227,34 @@ input[type="text"], input[type="password"]
 	#komentari
 		margin: 20px 0 0
 
+		#comment_container
+
+			#no_comments_msg
+				text-align: center
+				font-size: 12px
+				font-style: italic
+				color: #999
+
 		.comment_box
 			background: #2F2F2F
 			margin: 10px 0 0
-			padding: 2px 5px
+			padding: 2px 5px 5px
 
 			&.own
-				border: 1px dashed $dark_blue + 50
-				padding: 2px 4px
+				border: 1px dashed #fff
+				padding: 2px 4px 5px
 
 			.info
 				margin: 0
 				color: #aaa
 				font-size: 10px
+
+				.delete_comment
+					color: #EB3636
+					font-weight: bold
+
+					&:hover
+						color: #f00
 
 			div
 				margin: 5px 0 0

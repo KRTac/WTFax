@@ -74,9 +74,13 @@ if (isset($standalone) && $standalone) {
 		foreach ($comments as $comment) {
 			echo View::factory('notices/comment/box', array(
 				'comment' => $comment,
-				'user' => $user
+				'user' => $user,
+				'user_roles' => $user_roles
 			));
 		}
+	} else {
+		echo '
+						<p id="no_comments_msg">Trenutno nema komentara na ovu obavijest</p>';
 	}
 
 	echo '

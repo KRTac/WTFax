@@ -266,10 +266,8 @@ class Controller_Obavijesti extends Controller_Base {
 			if ($ajax) {
 				echo json_encode(array(
 					'status' => 'error',
-					'msg' => 'Morate se prijaviti da bi mogli pisati komentare.'
+					'msg' => 'Morate se prijaviti da biste mogli pisati komentare.'
 				));
-			} else {
-				//
 			}
 
 			return;
