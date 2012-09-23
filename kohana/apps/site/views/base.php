@@ -46,7 +46,6 @@ echo '
 	<div id="header">
 		<div class="logo">
 			<h1><a href="/">WTFax</a></h1>
-			<h2><a href="/">Feel the pain</a></h2>
 		</div>
 		<form class="search" action="/trazi" method="get">
 			<div>
