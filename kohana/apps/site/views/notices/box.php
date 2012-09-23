@@ -37,16 +37,10 @@ foreach ($notice_categories as $cat) {
 echo UTF8::substr($categories_html, 0, -2).'</span></div>';
 
 if ($user_roles['admin']) {
-	echo '
-					<p class="admins"><span>Administracija:</span>';
-
-	if ($notice->display == 1) {
-		echo '<span><a class="show_hide_notice" href="#">Sakrij obavijest</a></span>';
-	} else {
-		echo '<span>Obavijest je sakrivena. <a class="show_hide_notice" href="#">Prikaži obavijest</a></span>';
+	if ($notice->display != 1) {
+		echo '
+					<p class="admins"><span>Ova obavijest još nije odobrena. <a class="show_hide_notice" href="admin/obavijesti/odobri/' . $notice->id . '">Odobri obavijest</a></span></p>';
 	}
-
-	echo '<span><a class="remove_notice red bold" href="/admin/obavijesti/ukloni/'.$notice->id.'">Trajno ukloni obavijest</a></span></p>';
 }
 
 echo '
