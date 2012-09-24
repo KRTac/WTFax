@@ -65,9 +65,10 @@ class Controller_Admin_Obavijesti extends Controller_Admin_Base {
 				'display',
 			));
 
-			if (!empty($_POST['_categories'])) {
+			if (!empty($_POST['_categories']))
 				$selected_categories = Category::filter_valid_ids($_POST['_categories']);
-			}
+			else
+				$selected_categories = array();
 
 			try {
 				$notice->url_text = URL::title(Text::limit_chars($notice->title, 40, '', true), '_', true);
