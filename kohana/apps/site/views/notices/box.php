@@ -44,19 +44,14 @@ echo '
 if (isset($standalone) && $standalone) {
 	if ($user_roles['admin']) {
 		echo '
-				<div class="inline_notice_admin">
-					<h2 class="big_text">Administracija obavijesti</h2>
-					<hr />';
+				<div class="inline_notice_admin"><a class="button settings icon" href="/admin/obavijesti/uredi/' . $notice->id . '">Uredi obavijest</a>';
 
 		if ($notice->display)
-			echo '
-					<a class="button lock icon" href="/admin/obavijesti/sakrij/' . $notice->id . '">Sakrij obavijest</a>';
+			echo '<a class="button lock icon" href="/admin/obavijesti/sakrij/' . $notice->id . '">Sakrij obavijest</a>';
 		else
-			echo '
-					<a class="button unlock icon" href="/admin/obavijesti/odobri/' . $notice->id . '">Prikaži obavijest</a>';
+			echo '<a class="button unlock icon" href="/admin/obavijesti/odobri/' . $notice->id . '">Prikaži obavijest</a>';
 
-		echo '
-					<a class="button danger trash icon" href="/admin/obavijesti/brisi/' . $notice->id  . '" onclick="return confirm(\'Jeste li sigurni da želite izbrisati ovu obavijest?\');">Trajno izbriši</a>
+		echo '<a class="button danger trash icon" href="/admin/obavijesti/brisi/' . $notice->id  . '?redirect_to=/sve" onclick="return confirm(\'Jeste li sigurni da želite izbrisati ovu obavijest?\');">Trajno izbriši</a>
 				</div>';
 	}
 

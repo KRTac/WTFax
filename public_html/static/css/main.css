@@ -164,12 +164,15 @@ input[type="text"], input[type="password"] {
     text-shadow: 1px 1px 2px #111111;
     margin: 5px 0; }
   #content .inline_notice_admin {
-    margin: 20px 0 0; }
+    margin: 20px 0 0;
+    text-align: center;
+    padding: 5px 0;
+    border: 0;
+      border-top: 1px dotted red;
+      border-bottom: 1px dotted red; }
     #content .inline_notice_admin > h2 {
       color: red;
       font-size: 12px; }
-    #content .inline_notice_admin hr {
-      background: red; }
   #content #komentari {
     margin: 20px 0 0; }
     #content #komentari #comment_container #no_comments_msg {
@@ -389,10 +392,10 @@ input[type="text"], input[type="password"] {
             text-align: left; }
       #content table.form > tbody > tr > td input[type="text"], #content table.form > tbody > tr > td input[type="password"] {
         width: 250px; }
-    #content table.form.add_notice .label {
+    #content table.form.add_edit_notice .label {
       font-size: 18px;
       padding-bottom: 0; }
-    #content table.form.add_notice input[type="text"].big {
+    #content table.form.add_edit_notice input[type="text"].big {
       font-size: 18px;
       padding: 3px;
       width: 606px; }

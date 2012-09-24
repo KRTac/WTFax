@@ -2,11 +2,11 @@
 
 echo '
 		<div class="padded">
-			<h2 class="big_text">Dodaj obavijest</h2>
+			<h2 class="big_text">Uredi &quot;'.$notice->title.'&quot;</h2>
 			<hr />';
 
 echo '
-			<form method="post" action="/dodaj">
+			<form method="post" action="/admin/obavijesti/uredi/'.$notice->id.'">
 				<table cellspacing="0" class="form add_edit_notice">';
 
 if ($input_errors) {
@@ -41,6 +41,10 @@ echo '
 						</td>
 					</tr>
 					<tr>
+						<td class="left"></td>
+						<td class="right"><input type="checkbox" name="display" value="1" id="edit_notice_display_checkbox"'.($notice->display == 1 ? ' checked="checked"' : '').' /><label for="edit_notice_display_checkbox">Prikaži obavijest korisnicima</label></td>
+					</tr>
+					<tr>
 						<td class="left">Kategorije:</td>
 						<td class="right">
 							<p><strong>Napomena:</strong> Odabir jedne kategorije ne podrazumijeva njezine podkategorije.</p><br />
@@ -48,7 +52,7 @@ echo '
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><button class="button primary icon add" type="submit" name="submit" value="Objavi">Objavi</button></td>
+						<td colspan="2"><button class="button primary settings icon" type="submit" name="submit" value="Spremi promjene">Spremi promjene</button></td>
 					</tr>
 				</table>
 			</form>';
