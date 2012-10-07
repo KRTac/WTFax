@@ -16,18 +16,6 @@ if ($user) {
 					<li><a href="/odjava">Odjava</a></li>
 				</ul>
 			</div>';
-
-	if ($user_roles['admin']) {
-		echo '
-			<div class="section">
-				<h3 class="title">Administracija</h3>
-				<hr />
-				<ul class="content">
-					<li><a href="/admin/korisnici">Korisnici</a></li>
-					<li><a href="/admin/kategorije">Kategorije</a></li>
-				</ul>
-			</div>';
-	}
 } else {
 	echo '
 			<div class="section">
