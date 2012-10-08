@@ -49,8 +49,8 @@ echo '
 		</div>
 		<form class="search" action="/trazi" method="get">
 			<div>
-				<input type="text" name="q" value="" />
-				<input type="submit" name="submit" value="" />
+				<input type="text" name="q" value="'.$search_query.'" />
+				<input type="submit" value="" />
 			</div>
 		</form>
 	</div>

@@ -7,7 +7,7 @@ abstract class Controller_Base extends Controller_Template {
 	public $title = false;
 	public $titles = array();
 	public $content = false;
-	public $search_query = false;
+	public $search_query = '';
 
 	public $user = false;
 	public $user_roles = array(

@@ -340,4 +340,99 @@ class Controller_Obavijesti extends Controller_Base {
 		$this->request->response('/obavijest/'.$id);
 	}
 
+	public function action_trazi () {
+		if (!isset($_GET['q']))
+			$this->request->redirect('/');
+
+		$query = UTF8::trim($_GET['q']);
+		$query_src = HTML::chars($query);
+
+		if ($query == '')
+			$this->request->response('/');
+
+		$double_quote_count = mb_substr_count($query, '"');
+
+		$query_bits = array();
+
+		if ($double_quote_count > 0) {
+			if ($double_quote_count % 2 == 1) {
+				$last_doublequote_pos = UTF8::strrpos($query, '"');
+				$query = UTF8::substr($query, 0, $last_doublequote_pos) . UTF8::substr($query, $last_doublequote_pos + 1);
+			}
+
+			$first_double_quote = UTF8::strpos($query, '"');
+			$second_double_quote = UTF8::strpos($query, '"', $first_double_quote + 1);
+
+			while ($first_double_quote !== false) {
+				$segment = HTML::chars(UTF8::trim(UTF8::substr($query, $first_double_quote + 1, $second_double_quote - $first_double_quote - 1)));
+
+				if (UTF8::strlen($segment) > 0)
+					$query_bits[] = $segment;
+
+				$query = UTF8::substr_replace($query, ' ', $first_double_quote, $second_double_quote - $first_double_quote + 1);
+
+				$first_double_quote = UTF8::strpos($query, '"');
+				$second_double_quote = UTF8::strpos($query, '"', $first_double_quote + 1);
+			}
+		}
+
+		$query = HTML::chars(UTF8::trim($query));
+
+		if (UTF8::strlen($query) > 0) {
+			$space_position = UTF8::strpos($query, ' ');
+			if ($space_position === false)
+				$query_bits[] = $query;
+			else {
+				while ($space_position !== false) {
+					$query_bits[] = UTF8::substr($query, 0, $space_position);
+					$query = UTF8::trim(UTF8::substr($query, $space_position));
+					$space_position = UTF8::strpos($query, ' ');
+				}
+
+				if (UTF8::strlen($query) > 0)
+					$query_bits[] = $query;
+			}
+		}
+
+		$notices = ORM::factory('notice');
+
+		$notices->and_where_open();
+
+		foreach($query_bits as $bit)
+			$notices
+				->or_where('title', 'LIKE', '%'.$bit.'%')
+				->or_where('content', 'LIKE', '%'.$bit.'%');
+
+		$notices->and_where_close();
+
+		if (!$this->user_roles['admin'])
+			$notices->where('display', '=', 1);
+
+		$notices->reset(false);
+
+		$pagination = Pagination::factory(array(
+				'total_items' => $notices->count_all(),
+				'items_per_page' => $this->notices_per_page,
+			))
+			->route_params(array(
+				'action' => 'trazi',
+				'controller' => 'obavijesti',
+			));
+
+		$notices = $notices->order_by('created', 'DESC')
+			->offset($pagination->offset)
+			->limit($pagination->items_per_page)
+			->find_all();
+
+		$this->search_query = $query_src;
+
+		$this->content = View::factory('notices/container')
+			->set('title', 'Rezultati pretrage <em>'.$query_src.'</em>')
+			->set('content', View::factory('notices', array(
+				'notices' => $notices,
+				'user_roles' => $this->user_roles
+			)))
+			->set('pagination', $pagination->render());
+	}
+
 }
