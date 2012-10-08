@@ -2,6 +2,10 @@
 
 class Controller_Obavijesti extends Controller_Base {
 
+	public $rss_out;
+	public $rss_items = array();
+	public $rss_info = array();
+
 	public function before () {
 		parent::before();
 
@@ -12,6 +16,32 @@ class Controller_Obavijesti extends Controller_Base {
 				$this->request->action('sve');
 			}
 		}
+
+		$this->rss_out = isset($_GET['rss']);
+	}
+
+	public function after () {
+		if ($this->rss_out) {
+			$this->auto_render = false;
+
+			$this->request->response()->headers('Content-Type', 'application/rss+xml');
+
+			$notices = array();
+
+			foreach ($this->rss_items as $notice) {
+				$notices[] = array(
+					'title' => HTML::chars($notice->title),
+					'description' => HTML::chars($notice->content),
+					'link' => '/obavijest/'.$notice->id,
+					'pubDate' => $notice->created,
+					'guid' => '/obavijest/'.$notice->id
+				);
+			}
+
+			echo Feed::create($this->rss_info, $notices);
+		}
+
+		parent::after();
 	}
 
 	public function action_sve () {
@@ -42,12 +72,20 @@ class Controller_Obavijesti extends Controller_Base {
 			->limit($pagination->items_per_page)
 			->find_all();
 
-		$this->content = View::factory('notices/container')
-			->set('content', View::factory('notices', array(
-				'notices' => $notices,
-				'user_roles' => $this->user_roles
-			)))
-			->set('pagination', $pagination->render());
+		if ($this->rss_out) {
+			$this->rss_items = $notices;
+			$this->rss_info = array(
+				'title' => 'Sve obavijesti veleučilišta',
+				'description' => 'RSS feed za pračenje svih objavljenih obavijesti'
+			);
+		} else {
+			$this->content = View::factory('notices/container')
+				->set('content', View::factory('notices', array(
+					'notices' => $notices,
+					'user_roles' => $this->user_roles
+				)))
+				->set('pagination', $pagination->render());
+		}
 	}
 
 	public function action_moje () {
@@ -167,14 +205,23 @@ class Controller_Obavijesti extends Controller_Base {
 			->limit($pagination->items_per_page)
 			->find_all();
 
-		$this->content = View::factory('notices/container', array(
-				'content' => View::factory('notices', array(
-					'notices' => $notices,
-					'user_roles' => $this->user_roles
-				)),
-				'title' => $title,
-				'pagination' => $pagination->render(),
-			));
+
+		if ($this->rss_out) {
+			$this->rss_items = $notices;
+			$this->rss_info = array(
+				'title' => 'Sve obavijesti kategorije '.$category->name,
+				'description' => 'RSS feed za pračenje obavijesti iz kategorije '.$category->name
+			);
+		} else {
+			$this->content = View::factory('notices/container', array(
+					'content' => View::factory('notices', array(
+						'notices' => $notices,
+						'user_roles' => $this->user_roles
+					)),
+					'title' => $title,
+					'pagination' => $pagination->render(),
+				));
+		}
 	}
 
 	public function action_dodaj () {
