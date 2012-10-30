@@ -363,7 +363,8 @@ class Controller_Obavijesti extends Controller_Base {
 					'status' => 'success',
 					'html' => View::factory('notices/comment/box', array(
 						'comment' => $comment,
-						'user' => $this->user
+						'user' => $this->user,
+						'user_roles' => $this->user_roles
 					))->render()
 				));
 
